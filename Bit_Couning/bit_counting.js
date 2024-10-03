@@ -1,10 +1,8 @@
 var countBits = function (n) {
   let count = 0;
-
-  while (Math.abs(n)) {
-    count += n & 1;
-    n >>= 1;
+  let bigIntN = BigInt(n);
+  while (bigIntN > 0n) {
+    count += Number(bigIntN % 2n);
+    bigIntN >>= 1n;
   }
-
-  return count;
 };
