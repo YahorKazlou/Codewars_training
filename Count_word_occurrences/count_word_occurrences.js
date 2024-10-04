@@ -1,5 +1,6 @@
 var wordCounter = function (text) {
-  const wordsArray = text.replace(/[.,]/g, " ").split(/\s+/);
+
+  const wordsArray = text.replace(/[.,]/g, "").split(" ");
 
   const wordCount = {};
 
@@ -10,7 +11,5 @@ var wordCounter = function (text) {
     }
   });
 
-  return {
-    count: (word) => wordCount[word.toLowerCase()] || 0,
-  };
+  return { count: (word) => wordCount[word.toLowerCase()] || 0 };
 };
