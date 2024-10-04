@@ -1,9 +1,10 @@
 function backToTheFuture(str) {
   const monthToReturn = {
-    January: "October",
-    April: "July",
-    September: "December",
-    February: ["March", "November"],
+    January: { month: "October", days: 31 },
+    February: { month: "March", days: 31 },
+    March: { month: "November", days: 30 },
+    April: { month: "July", days: 31 },
+    September: { month: "December", days: 31 },
   };
 
   if (!str) {
@@ -13,11 +14,14 @@ function backToTheFuture(str) {
   const [dayOfWeek, day, month] = str.split(" ");
 
   if (monthToReturn[month]) {
-    const returnMonth = monthToReturn[month];
-    const formattedReturnMonth = Array.isArray(returnMonth)
-      ? returnMonth[1]
-      : returnMonth;
-    return `I'm leaving here on ${dayOfWeek} ${day} ${formattedReturnMonth}!`;
+    const returnMonth = monthToReturn[month].month;
+    const returnDays = monthToReturn[month].days;
+
+    if (day > returnDays) {
+      return "Doc, I can't get back to the future!";
+    }
+
+    return `I'm leaving here on ${dayOfWeek} ${day} ${returnMonth}!`;
   }
 
   return "Doc, I can't get back to the future!";
